@@ -16,20 +16,23 @@ import re
 check = 0
 
 def cap_msg():
+    """Gets the input message text and calls the proof_text function"""
     msgtxt = e1.get()
-    prooftext(msgtxt)
-    print msgtxt
+    proof_text(msgtxt)
+    print msgtxt # temp output to screen -- line will go away when finalizing the code
 
-# Function checks the message text for punctuation -- slash bar / virgule is ok.
 def is_punct(char):
+    """Checks the message text for punctuation -- slash bar / virgule is ok; other is not allowed."""
     string.punctuation = re.sub('/', '', string.punctuation)
     return char in string.punctuation
 
 # Main function        
-def prooftext(msgtxt):
+def proof_text(msgtxt):
+    """Runs various 'checks' on the message text -- no punctuation, removes extra spaces, counts words,
+    changes case to UPPER, and verifies the word count (check) is not greater than 25"""
     # check length of msgtxt
     if len(msgtxt) > 0:
-        print len(msgtxt)
+        print len(msgtxt) # temp output to screen -- line will go away when finalizing the code
         
         # Check for punctuation
         for char in msgtxt:
