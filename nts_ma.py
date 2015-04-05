@@ -3,7 +3,7 @@
 NTS_MA.PY (National Traffic System Message Assistant)
 By: Kevin Shissler/K1FQ (k1fq@arrl.net)
 This is Version 1.0
-Created/modified on: August 20, 2013 at 15:35 EDST
+Created/last modified on: August 20, 2013 at 15:35 EDST / April 5, 2015 at 1725 EDST
 Additional features (more than 25 word texts allowed, automated ARL texts, etc. will be
 added in the next version.
 This is my first ever Python & Tkinter application, and I'm not a programmer by trade --
@@ -14,6 +14,15 @@ import string
 import re
 
 check = 0
+
+def clear_e1_window():
+    """Clears the message input window."""
+    e1.delete(0,END)
+
+def word_count(check):
+    """Checks to make sure there are 25 or fewer words in the message"""
+    if check > 25:
+        print "Your message exceeds 25 words. Please shorten it to 25 or fewer words."
 
 def cap_msg():
     """Gets the input message text and calls the proof_text function"""
@@ -50,8 +59,8 @@ def proof_text(msgtxt):
         
         # And, because the 'standard' ARRL Radiogram has 25 words or less, this version is
         # going to enforce the 25 word limit -- this is a good place to check for that.
-        if check > 25:
-            print "shit"
+        word_count(check)
+
         # Convert the text into UPPERCASE
         msgtxt = msgtxt.upper()
         
@@ -76,11 +85,10 @@ def proof_text(msgtxt):
 
 root = Tk()
 root.configure(bg="forest green")
-l1 = Label(text='Enter the message text', bg="forest green", fg="yellow").pack(side=TOP)
+l1 = Label(text='Enter the message text', bg="forest green", fg="yellow").grid(row=0, column=0)
 e1 = Entry(root, width=150, relief="sunken")
-e1.pack()
+e1.grid(row=1)
 e1.focus_set()
-b1 = Button(root, text='Check Message', command=cap_msg)
-b1.pack()
-
+b1 = Button(root, text='Check Message', command=cap_msg).grid(row=2, column=0, sticky=W)
+b2 = Button(root, text='Clear Message', command=clear_e1_window).grid(row=2, column=0, sticky=E)
 root.mainloop()
