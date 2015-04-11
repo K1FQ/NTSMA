@@ -84,9 +84,12 @@ def proof_text(msgtxt):
 
 
 root = Tk()
+screen_width = root.winfo_screenwidth() #gets the screen width in pixels
+screen_height = root.winfo_screenheight() #gets the screen height in pixels
+print "Screen Width is: ", screen_width
 root.configure(bg="forest green")
 l1 = Label(text='Enter the message text', bg="forest green", fg="yellow").grid(row=0, column=0)
-e1 = Entry(root, width=150, relief="sunken")
+e1 = Entry(root, width=(screen_width / 8), relief="sunken")
 e1.grid(row=1)
 e1.focus_set()
 b1 = Button(root, text='Check Message', command=cap_msg).grid(row=2, column=0, sticky=W)
